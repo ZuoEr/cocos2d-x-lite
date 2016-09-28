@@ -2,7 +2,9 @@ package org.cocos2dx.javascript;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.opengl.GLSurfaceView;
+import android.os.Bundle;
 
 public class SDKWrapper {
 	private final static boolean PACKAGE_AS = true;
@@ -108,6 +110,56 @@ public class SDKWrapper {
 		if (PACKAGE_AS) {
 			try {
 				mClass.getMethod("onStop").invoke(mClass);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void onBackPressed() {
+		if (PACKAGE_AS) {
+			try {
+				mClass.getMethod("onBackPressed").invoke(mClass);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void onConfigurationChanged(Configuration newConfig) {
+		if (PACKAGE_AS) {
+			try {
+				mClass.getMethod("onConfigurationChanged", Configuration.class).invoke(mClass, newConfig);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+			if (PACKAGE_AS) {
+			try {
+				mClass.getMethod("onRestoreInstanceState", Bundle.class).invoke(mClass, savedInstanceState);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void onSaveInstanceState(Bundle outState) {
+			if (PACKAGE_AS) {
+			try {
+				mClass.getMethod("onSaveInstanceState", Bundle.class).invoke(mClass, outState);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void onStart() {
+		if (PACKAGE_AS) {
+			try {
+				mClass.getMethod("onStart").invoke(mClass);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
